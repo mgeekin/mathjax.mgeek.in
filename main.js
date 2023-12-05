@@ -1,18 +1,33 @@
 getfile("./exampleMath.md", (data) => {
   var mdExampleText = data;
-
-  append(app, gen(h1, "", "Equation Preview based on "+gens(a,"","MathJax","","https://www.mathjax.org/")), "over");
+  append(app, gen(header, "header", "", "header"), "o");
+  append(header, gen(nav, "nav", "", "nav"));
   append(app, gen(main, "main", "", "main"));
+  append(
+    header,
+    gen(
+      h1,
+      "",
+      "Equation Preview based on " +
+        gens(a, "", "MathJax", "", "https://www.mathjax.org/")
+    ),
+    "over"
+  );
+
+  append(app, gen(footer, "footer", "", "footer"));
+
   append(main, gen(div, "gridRoot", "", "gridRoot"));
 
   var blocks = "markdown".split(",");
   blocks.forEach((block) => {
     var id = block + "-block";
-    append(gridRoot, gen(div, id, "", block));
+    var boxid = block + "-box";
+    append(gridRoot, gen(div, id, "", block + ",column"));
     append(`#${id}`, gen(h3, "", "LaTeX Math Equation Input"));
+    append(`#${id}`, gen(div, `${boxid}`, "", "box"));
     append(
-      `#${id}`,
-      gen(pre, `${block}-code`, block, "code", {
+      `#${boxid}`,
+      gen(pre, `${block}-code`, block, "code,scrolly", {
         onchange: "updateOutput()",
         contenteditable: "true",
       })
@@ -22,49 +37,44 @@ getfile("./exampleMath.md", (data) => {
   var blocks = "preview".split(",");
   blocks.forEach((block) => {
     var id = block + "-block";
-    append(gridRoot, gen(div, id, "", block));
+    append(gridRoot, gen(div, id, "", block + ",column"));
     append(`#${id}`, gen(h3, "", "Equation Output"));
     append(
       `#${id}`,
-      gen(div, `${block}-code`, block, "code", { onchange: "updateOutput()" })
+      gen(div, `${block}-code`, block, "code,scrolly", {
+        onchange: "updateOutput()",
+      })
     );
   });
 
   grab("#markdown-code")[0].innerText = mdExampleText;
 
-	function mathjaxUpdate() {
-	  console.info("mathjaxUpdate");
-	    MathJax.startup.document.state(0);
-	    MathJax.texReset();
-	    MathJax.typesetClear();
-	  setTimeout(() => {
-	    MathJax.startup.document.state(0);
-	    MathJax.texReset();
-	    MathJax.typesetClear();
+  function mathjaxUpdate() {
+    console.info("mathjaxUpdate");
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typesetClear();
+    setTimeout(() => {
+      MathJax.startup.document.state(0);
+      MathJax.texReset();
+      MathJax.typesetClear();
 
-	    grab("code").forEach((c) => {
-	      c.innerHTML = c.innerHTML.replaceAll("<br>", "\n");
-	    });
-	    MathJax.typesetPromise();
-	  }, 2000);
-	}
-
-
-
+      grab("code").forEach((c) => {
+        c.innerHTML = c.innerHTML.replaceAll("<br>", "\n");
+      });
+      MathJax.typesetPromise();
+    }, 2000);
+  }
 
   function updateOutput() {
     function updatePreview(e) {
       append(`#preview-code`, e, "over");
     }
     var mdText = grab("#markdown-code")[0].innerText;
-  	parsemd(mdText,updatePreview)
-//    parsemdbeta(mdText, updatePreview);
-	mathjaxUpdate()
+    parsemd(mdText, updatePreview);
+    //    parsemdbeta(mdText, updatePreview);
+    mathjaxUpdate();
   }
-
-
-
-
 
   var mdCode = grab("#markdown-code")[0];
   mdCode.addEventListener("keyup", function (e) {
@@ -91,3 +101,5 @@ getfile("./exampleMath.md", (data) => {
     append("#preview-code", gen(pre, "", htmlPreviewText), "over");
   });
 });
+
+$$.init();
