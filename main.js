@@ -103,21 +103,23 @@ getfile("./exampleMath.md", (data) => {
   
 
   var mdCode = grab("#markdown-code")[0];
-  mdCode.addEventListener("keyup", function (e) {
+  mdCode.addEventListener("keypress", function (e) {
+    if (e.key=="$"){
     updateOutput();
+    }
   });
 
-  mdCode.addEventListener("click", function (e) {
-    updateOutput();
-  });
+  // mdCode.addEventListener("click", function (e) {
+  //   updateOutput();
+  // });
 
-  mdCode.addEventListener("blur", function (e) {
-    updateOutput();
-  });
+  // mdCode.addEventListener("blur", function (e) {
+  //   updateOutput();
+  // });
 
-  mdCode.addEventListener("touchstart", function (e) {
-    updateOutput();
-  });
+  // mdCode.addEventListener("touchstart", function (e) {
+  //   updateOutput();
+  // });
 
   load(["./md.scss"]);
   updateOutput();
@@ -133,3 +135,10 @@ getfile("./exampleMath.md", (data) => {
 });
 
 $$.init();
+
+
+setTimeout(
+  ()=>{
+  grab("#markdown-code")[0].click()
+  grab("#markdown-code")[0].focus()},3000
+)
