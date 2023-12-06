@@ -1,17 +1,21 @@
-# Demo Equations
 
-### Inline equation
-This is equation in line $E=mc^2$ line here
+   $$   E=mc^2   $$
 
 
-### Math mode 
-This equation is in block mode
+   $$    -\frac{\hbar^2}{2m} \nabla^2 \psi + V \psi = i\hbar \frac{\partial \psi}{\partial t}   $$
 
-$$\overrightarrow{F}=m\vec{a}$$
+   $$   \rho \left( \frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} \right) = -\nabla p + \nabla \cdot \mathbf{T} + \mathbf{f}$$
+
+   $$    (i\gamma^\mu \partial_\mu - m)\psi = 0    $$
+
+   $$   c = \sqrt{a^2 + b^2}   $$
+
+   $$   F = G\frac{m_1 m_2}{r^2}   $$
 
 
+    $$    \Delta x \Delta p \geq \frac{\hbar}{2}    $$
 
 
-> click again if preview is not shown 
+## Inline mode
 
-
+text $   E=mc^2   $ text
