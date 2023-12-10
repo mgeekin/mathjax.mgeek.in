@@ -103,23 +103,22 @@ ul{
       text-transform: capitalize;
       padding-inline: 1em;
       padding-block: .5em;
-      background-color: hsla(160, 100%, 50%, 0.562);
+      background-color: hsla(160, 100%, 50%, 0.15);
     }
 
     
   }
 }
 
-.markdown .code{
+.markdown{
   background-color: hsl(188, 100%, 6%);
 
   &:focus,&:focus-visible {
     background-color: hsl(188, 100%, 18%);
   }
 }
-.preview .code{
+.preview{
   background-color: hsl(266, 33%, 9%);
-  padding:1em;
 }
 .column {
   min-height: 0px;
@@ -140,15 +139,19 @@ ul{
       min-height: 0px;
     }
 
+
+  }
+
+
     .code {
       padding: 1em;
     }
-  }
-
 }
 
 
-
+.CtxtMenu_Attached_0{
+  padding:1em;
+}
 
 .header{
   display: flex;

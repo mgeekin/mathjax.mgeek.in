@@ -104,9 +104,9 @@ getfile("./exampleMath.md", (data) => {
 
   var mdCode = grab("#markdown-code")[0];
   mdCode.addEventListener("keypress", function (e) {
-    if (e.key=="$"){
+    // if (e.key=="$"){
     updateOutput();
-    }
+    // }
   });
 
   // mdCode.addEventListener("click", function (e) {
